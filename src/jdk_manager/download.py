@@ -18,6 +18,10 @@ def download_archive(url: str, dest_dir: Path) -> Path:
     filename = Path(urlparse(url).path).name
     dest_path = dest_dir / filename
 
+    if dest_path.exists():
+        print(f"Already downloaded: {dest_path}")
+        return dest_path
+
     print(f"Downloading to {dest_path} ...")
     with requests.get(url, stream=True, timeout=60) as r:
         r.raise_for_status()
