@@ -19,3 +19,4 @@ def install(work_dir: Path, major: int) -> Path:
     shutil.move(str(top), str(dest))
 
     return dest.resolve()
+

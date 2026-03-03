@@ -6,6 +6,7 @@ from pathlib import Path
 import requests
 import pandas as pd
 
+
 API_URL = "https://mise-java.jdx.dev/jvm/ga/macosx/aarch64.json"
 CACHE_FILE = Path.home() / ".cache" / "jdk-manager" / "db.json"
 CACHE_TTL = 60 * 60  # 1시간 (초)
@@ -59,6 +60,7 @@ def fetch_db() -> pd.DataFrame:
         data = resp.json()
         CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
         CACHE_FILE.write_text(json.dumps(data))
+
     return pd.DataFrame(data)
 
 

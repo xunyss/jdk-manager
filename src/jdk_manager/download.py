@@ -38,5 +38,5 @@ def download_archive(url: str, dest_dir: Path) -> Path:
                         mb_total = total / 1024 / 1024
                         print(f"\r  {mb_done:.1f} / {mb_total:.1f} MB ({pct:.0f}%)", end="", flush=True)
     print()
-
     return dest_path
+

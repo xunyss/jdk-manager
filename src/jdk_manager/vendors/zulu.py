@@ -27,3 +27,4 @@ def install(work_dir: Path, major: int) -> Path:
     shutil.move(str(jdk_dir), str(dest))
 
     return dest.resolve()
+

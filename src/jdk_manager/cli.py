@@ -8,6 +8,7 @@ CACHE_DIR = Path.home() / ".cache" / "jdk-manager"
 from .db import fetch_db, find_package, list_vendors, parse_package
 from .download import download_archive, sha256_file
 from .install import extract_and_install
+from .vendors import INSTALL_DIR_NAMES
 
 
 def cmd_download(package: str) -> None:
@@ -55,7 +56,9 @@ def cmd_install(package: str) -> None:
 
 def cmd_uninstall(package: str) -> None:
     vendor, major = parse_package(package)
-    jdk_dir_name = f"{vendor}-{major}.jdk"
+    if vendor not in INSTALL_DIR_NAMES:
+        raise ValueError(f"Vendor '{vendor}' is not supported")
+    jdk_dir_name = INSTALL_DIR_NAMES[vendor](major)
     target = Path.home() / "Library" / "Java" / "JavaVirtualMachines" / jdk_dir_name
 
     if not target.exists():
@@ -109,3 +112,4 @@ def main() -> None:
         print(f"Unknown command: {command!r}")
         print("usage: jdk [command] [jdk-package]")
         sys.exit(1)
+
