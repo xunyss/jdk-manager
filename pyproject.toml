@@ -1,0 +1,21 @@
+[project]
+name = "jdk-manager"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.1",
+    "requests>=2.32.5",
+]
+
+[project.scripts]
+jdk = "jdk_manager.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
